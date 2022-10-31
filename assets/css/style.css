@@ -32,7 +32,7 @@ header p {
 }
 
 /*/ /////////////////////MAIN///////////////////////////////////////////////*/
-#question-container {
+#questionContainer {
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
