@@ -1,0 +1,15 @@
+{
+    "questions": [
+        { "text": "What element do we put JavaScript scripts inside?", "answers": ["<js>", "<script>", "<scripting>", "<javascript>"], "sol": 2 },
+        {
+            "text": "Where is the correct place to insert a JavaScript?",
+            "answers": ["The <head> section", "Both the <head> and <body>", "The <head> section", "All of the above"],
+            "sol": 2
+        },
+        {
+            "text": "What is the correct syntax for referring to an external script called 'xxx.js'?",
+            "answers": ["<script src='xxx.js'>", "<script name='xxx.js'>", "<script href='xxx.js'>", ""],
+            "sol": 1
+        }
+    ]
+}

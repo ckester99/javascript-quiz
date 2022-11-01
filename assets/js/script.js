@@ -1,3 +1,9 @@
+// Importing questions
+var questionsJSON;
+fetch("./assets/js/questions.json")
+    .then((response) => response.json())
+    .then((data) => (questionsJSON = data));
+
 // Organizational elemtents
 var body = document.body;
 var header = document.createElement("header");
@@ -41,6 +47,7 @@ var currentAnswer = 0;
 var timerVal = 0;
 var gameRunning = false;
 var score = 0;
+var questions;
 
 // Organizing DOM
 body.appendChild(header);
@@ -72,6 +79,8 @@ function showMainScreen() {
 }
 
 function startGame() {
+    //This is a bad way of waiting until the fetch is fulfilled, but I don't know the proper way
+    questions = questionsJSON.questions;
     //Header
     timerVal = 75;
     timer.textContent = "Time: 75";
