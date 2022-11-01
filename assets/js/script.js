@@ -21,10 +21,11 @@ questionContainer.setAttribute(
     "position: absolute; left:50%; transform:translate(-50%,0); width:70%; display:flex; flex-direction:column; margin-top:8vh; justify-content:center; align-items:center;"
 );
 var questionTitle = document.createElement("h1");
-questionTitle.setAttribute("style", "font-size:45px; font-weight:bold; text-align: center;");
+questionTitle.setAttribute("style", "font-size:45px; font-weight:bold;");
+questionTitle.classList.add("centerText");
 var p1 = document.createElement("p");
 var startButton = document.createElement("button");
-startButton.classList.add("purpleBtn");
+startButton.classList.add("purpleBtn", "centerText");
 startButton.addEventListener("click", startGame);
 p1.setAttribute("style", "font-size:24px; text-align:center; margin-top:5vh;");
 var responses = document.createElement("div");
@@ -42,8 +43,11 @@ ansButtons[1].classList.add("purpleBtn");
 ansButtons[2].classList.add("purpleBtn");
 ansButtons[3].classList.add("purpleBtn");
 
+var feedbackDisplay = document.createElement("h2");
+feedbackDisplay.setAttribute("style", "font-size:40px; font-weight:bold; color:#D3D3D3; border-top: 2px; border-color:#D3D3D3;");
+
 // Game Vars
-var currentAnswer = 0;
+var curQuestion;
 var timerVal = 0;
 var gameRunning = false;
 var score = 0;
@@ -79,18 +83,30 @@ function showMainScreen() {
 }
 
 function startGame() {
-    //This is a bad way of waiting until the fetch is fulfilled, but I don't know the proper way
     questions = randomize(questionsJSON.questions);
+    curQuestion = questions[0];
     console.log(questions);
     //Header
     timerVal = 75;
     timer.textContent = "Time: 75";
-
     //Main
+    questionContainer.innerHTML = "";
+    questionContainer.setAttribute("style", questionContainer.getAttribute("style") + " align-items:start;");
+
+    questionContainer.appendChild(questionTitle);
+    questionTitle.setAttribute("style", questionTitle.getAttribute("style") + " margin-bottom: 4vh;");
+    questionTitle.classList.remove("centerText");
+
+    questionContainer.appendChild(ansButtons[0]);
+    questionContainer.appendChild(ansButtons[1]);
+    questionContainer.appendChild(ansButtons[2]);
+    questionContainer.appendChild(ansButtons[3]);
+
+    setQuestion();
 }
 
 function answer(number) {
-    if (number === currentAnswer) {
+    if (number === curQuestion.sol) {
     }
 }
 
@@ -125,4 +141,32 @@ function randomize(arr) {
         arr[j] = tmp;
     }
     return arr;
+}
+
+function getMaxAnsBtnWidth() {
+    var maxWdth = 0;
+    for (i = 0; i < 4; i++) {
+        if (ansButtons[i].clientWidth > maxWdth) {
+            maxWdth = ansButtons[i].clientWidth;
+        }
+    }
+    return maxWdth;
+}
+
+function setQuestion() {
+    var maxWdth;
+
+    questionTitle.textContent = curQuestion.text;
+
+    ansButtons[0].textContent = "1. " + curQuestion.answers[0];
+    ansButtons[1].textContent = "2. " + curQuestion.answers[1];
+    ansButtons[2].textContent = "3. " + curQuestion.answers[2];
+    ansButtons[3].textContent = "4. " + curQuestion.answers[3];
+    maxWdth = getMaxAnsBtnWidth();
+    ansButtons[0].setAttribute("style", "width:" + maxWdth + "px;");
+    ansButtons[1].setAttribute("style", "width:" + maxWdth + "px;");
+    ansButtons[2].setAttribute("style", "width:" + maxWdth + "px;");
+    ansButtons[3].setAttribute("style", "width:" + maxWdth + "px;");
+
+    console.log(maxWdth);
 }

@@ -33,15 +33,21 @@ header p {
 
 /*/ /////////////////////CLASSES///////////////////////////////////////////////*/
 .purpleBtn {
-    width: 200px;
     height: 60px;
     background-color: rgb(102, 0, 204);
     color: white;
     border-radius: 8px;
     font-size: 35px;
-    margin-top: 10px;
+    margin-top: 1.8vh;
+    text-align: start;
+    padding: 0 20px;
+    white-space: nowrap;
 }
 
 .purpleBtn:hover {
     background-color: fuchsia;
+}
+
+.centerText {
+    text-align: center;
 }
