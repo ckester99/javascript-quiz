@@ -80,7 +80,8 @@ function showMainScreen() {
 
 function startGame() {
     //This is a bad way of waiting until the fetch is fulfilled, but I don't know the proper way
-    questions = questionsJSON.questions;
+    questions = randomize(questionsJSON.questions);
+    console.log(questions);
     //Header
     timerVal = 75;
     timer.textContent = "Time: 75";
@@ -113,4 +114,15 @@ function showHighScores() {
     highScoreButton.textContent = "";
 
     //Main
+}
+
+function randomize(arr) {
+    var i, j, tmp;
+    for (i = arr.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+    return arr;
 }

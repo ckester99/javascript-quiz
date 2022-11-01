@@ -1,15 +1,79 @@
 {
     "questions": [
         { "text": "What element do we put JavaScript scripts inside?", "answers": ["<js>", "<script>", "<scripting>", "<javascript>"], "sol": 2 },
+
         {
             "text": "Where is the correct place to insert a JavaScript?",
             "answers": ["The <head> section", "Both the <head> and <body>", "The <head> section", "All of the above"],
             "sol": 2
         },
+
         {
             "text": "What is the correct syntax for referring to an external script called 'xxx.js'?",
             "answers": ["<script src='xxx.js'>", "<script name='xxx.js'>", "<script href='xxx.js'>", ""],
             "sol": 1
-        }
+        },
+
+        {
+            "text": "How do you write 'Hello World' in an alert box?",
+            "answers": ["msg('Hello World')", "alert('Hello World')", "msgBox('Hello World')", "alertBox('Hello World')"],
+            "sol": 2
+        },
+
+        {
+            "text": "How do you create a function in JavaScript?",
+            "answers": ["function:myFunction", "function = myFunction()", "funct myFunction()", "function myFunction()"],
+            "sol": 4
+        },
+
+        {
+            "text": "String values must be enclosed within ____ when being assigned to variables.",
+            "answers": ["commas", "curly brackets", "quotes", "parentheses"],
+            "sol": 3
+        },
+
+        {
+            "text": "A very useful tool used during development and debigging for printing content to the debugger is:",
+            "answers": ["JavaScript", "terminal/bash", "for loops", "console.log"],
+            "sol": 4
+        },
+
+        { "text": "Commonly used data types do NOT include:", "answers": ["strings", "booleans", "alerts", "numbers"], "sol": 3 },
+
+        {
+            "text": "Arrays in JavaScript can be used to store:",
+            "answers": ["numbers and strings", "other arrays", "booleans", "all of the above"],
+            "sol": 4
+        },
+
+        {
+            "text": "The condition in an if / else statement is enclosed with:",
+            "answers": ["quotes", "curly brackets", "parenthesis", "square brackets"],
+            "sol": 3
+        },
+
+        { "text": "How do you say not in JavaScript?", "answers": ["!", "not", "reverse", "!!"], "sol": 1 },
+
+        { "text": "How do you add comments in JavaScript?", "answers": ["?", "#", "$", "//"], "sol": 4 },
+
+        {
+            "text": "Which event occurs when the user clicks on an HTML element?",
+            "answers": ["onmouseclick", "onchange", "onclick", "onmouseover"],
+            "sol": 3
+        },
+
+        { "text": "How do you declare a JavaScript variable?", "answers": ["variable varName", "varName", "var varName", "v varName"], "sol": 3 },
+
+        { "text": "What operator is used to assign a value to a variable?", "answers": ["=", "-", "x", "*"], "sol": 1 },
+
+        { "text": "What will the following code return: Boolean(10 > 9)", "answers": ["NaN", "true", "false", "True"], "sol": 2 },
+
+        { "text": "Which of the following is correct JavaScript?", "answers": ["i=+1;", "i=i++1;", "i++;", "+i+;"], "sol": 3 },
+
+        { "text": "What is a function that is part of an object called?", "answers": ["method", "function", "object function", "array"], "sol": 1 },
+
+        { "text": "What character ends a line in JavaScript", "answers": ["$", "#", "-", ";"], "sol": 4 },
+
+        { "text": "What is the strict comparison operator?", "answers": ["==", "=", "===", "===="], "sol": 3 }
     ]
 }
