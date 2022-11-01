@@ -5,9 +5,10 @@ var main = document.createElement("main");
 
 // Header Elements
 var highScoreButton = document.createElement("button");
+highScoreButton.addEventListener("click", showHighScores);
 var timer = document.createElement("p");
 
-//Main elements
+// MainScreen elements
 var questionContainer = document.createElement("div");
 questionContainer.setAttribute(
     "style",
@@ -18,10 +19,12 @@ questionTitle.setAttribute("style", "font-size:45px; font-weight:bold; text-alig
 var p1 = document.createElement("p");
 var startButton = document.createElement("button");
 startButton.classList.add("purpleBtn");
+startButton.addEventListener("click", startGame);
 p1.setAttribute("style", "font-size:24px; text-align:center; margin-top:5vh;");
 var responses = document.createElement("div");
 responses.setAttribute("style", "display:flex; flex-direction:column; max-width:30vw; align-items:flex-start;");
-////These will be the buttons that the user can click on to answer
+
+// Game Screen Elements
 var ansButtons = [
     document.createElement("button"),
     document.createElement("button"),
@@ -33,7 +36,11 @@ ansButtons[1].classList.add("purpleBtn");
 ansButtons[2].classList.add("purpleBtn");
 ansButtons[3].classList.add("purpleBtn");
 
+// Game Vars
 var currentAnswer = 0;
+var timerVal = 0;
+var gameRunning = false;
+var score = 0;
 
 // Organizing DOM
 body.appendChild(header);
@@ -50,6 +57,7 @@ function showMainScreen() {
     header.appendChild(timer);
     highScoreButton.textContent = "View High Scores";
     timer.textContent = "Time: 0";
+
     //Main
     main.innerHTML = "";
     main.appendChild(questionContainer);
@@ -63,13 +71,37 @@ function showMainScreen() {
     startButton.setAttribute("style", "margin-top:5vh;");
 }
 
-function startGame() {}
+function startGame() {
+    //Header
+    timerVal = 75;
+    timer.textContent = "Time: 75";
+
+    //Main
+}
 
 function answer(number) {
     if (number === currentAnswer) {
     }
 }
 
+setInterval(countDown, 1000);
+function countDown() {
+    timerVal--;
+    if (timerVal <= 0 && !gameRunning) {
+        gameRunning = false;
+        gameOver(score);
+        timer.textContent = "Time: 0";
+    } else {
+        timer.textContent = "Time: " + timerVal;
+    }
+}
+
 function gameOver(score) {}
 
-function showHighScores() {}
+function showHighScores() {
+    //Header
+    timer.textContent = "Time: 0";
+    highScoreButton.textContent = "";
+
+    //Main
+}
