@@ -9,14 +9,18 @@ var timer = document.createElement("p");
 
 //Main elements
 var questionContainer = document.createElement("div");
-questionContainer.setAttribute("id", "questionContainer");
+questionContainer.setAttribute(
+    "style",
+    "position: absolute; left:50%; transform:translate(-50%,0); width:70%; display:flex; flex-direction:column; margin-top:8vh; justify-content:center; align-items:center;"
+);
 var questionTitle = document.createElement("h1");
+questionTitle.setAttribute("style", "font-size:45px; font-weight:bold; text-align: center;");
 var p1 = document.createElement("p");
 var startButton = document.createElement("button");
 startButton.classList.add("purpleBtn");
-p1.setAttribute("style", "font-size: 24px;text-align: center; margin-top: 5vh");
+p1.setAttribute("style", "font-size:24px; text-align:center; margin-top:5vh;");
 var responses = document.createElement("div");
-responses.setAttribute("id", "responses");
+responses.setAttribute("style", "display:flex; flex-direction:column; max-width:30vw; align-items:flex-start;");
 ////These will be the buttons that the user can click on to answer
 var ansButtons = [
     document.createElement("button"),
@@ -35,11 +39,11 @@ var currentAnswer = 0;
 body.appendChild(header);
 body.appendChild(main);
 
-init();
+showMainScreen();
 
 // Function Definitions
 
-function init() {
+function showMainScreen() {
     //Header
     header.innerHTML = "";
     header.appendChild(highScoreButton);
@@ -49,10 +53,8 @@ function init() {
     //Main
     main.innerHTML = "";
     main.appendChild(questionContainer);
-    questionContainer.setAttribute("style", "justify-content: center");
     questionContainer.appendChild(questionTitle);
     questionTitle.textContent = "Coding Quiz Challenge";
-    questionTitle.setAttribute("style", "text-align:center");
     questionContainer.appendChild(p1);
     p1.textContent =
         "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
@@ -61,7 +63,13 @@ function init() {
     startButton.setAttribute("style", "margin-top:5vh;");
 }
 
+function startGame() {}
+
 function answer(number) {
     if (number === currentAnswer) {
     }
 }
+
+function gameOver(score) {}
+
+function showHighScores() {}
