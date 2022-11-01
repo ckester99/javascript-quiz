@@ -11,6 +11,10 @@ var timer = document.createElement("p");
 var questionContainer = document.createElement("div");
 questionContainer.setAttribute("id", "questionContainer");
 var questionTitle = document.createElement("h1");
+var p1 = document.createElement("p");
+var startButton = document.createElement("button");
+startButton.classList.add("purpleBtn");
+p1.setAttribute("style", "font-size: 24px;text-align: center; margin-top: 5vh");
 var responses = document.createElement("div");
 responses.setAttribute("id", "responses");
 ////These will be the buttons that the user can click on to answer
@@ -20,30 +24,44 @@ var ansButtons = [
     document.createElement("button"),
     document.createElement("button"),
 ];
+ansButtons[0].classList.add("purpleBtn");
+ansButtons[1].classList.add("purpleBtn");
+ansButtons[2].classList.add("purpleBtn");
+ansButtons[3].classList.add("purpleBtn");
+
+var currentAnswer = 0;
 
 // Organizing DOM
 body.appendChild(header);
 body.appendChild(main);
-header.appendChild(highScoreButton);
-header.appendChild(timer);
-main.appendChild(questionContainer);
-questionContainer.appendChild(questionTitle);
-questionContainer.appendChild(responses);
-responses.appendChild(ansButtons[0]);
-responses.appendChild(ansButtons[1]);
-responses.appendChild(ansButtons[2]);
-responses.appendChild(ansButtons[3]);
 
 init();
 
+// Function Definitions
+
 function init() {
     //Header
+    header.innerHTML = "";
+    header.appendChild(highScoreButton);
+    header.appendChild(timer);
     highScoreButton.textContent = "View High Scores";
-    timer.textContent = "Time:";
+    timer.textContent = "Time: 0";
     //Main
-    questionTitle.textContent = "Question Content";
-    ansButtons[0].textContent = "Question 1";
-    ansButtons[1].textContent = "Question 2";
-    ansButtons[2].textContent = "Question 3";
-    ansButtons[3].textContent = "Question 4";
+    main.innerHTML = "";
+    main.appendChild(questionContainer);
+    questionContainer.setAttribute("style", "justify-content: center");
+    questionContainer.appendChild(questionTitle);
+    questionTitle.textContent = "Coding Quiz Challenge";
+    questionTitle.setAttribute("style", "text-align:center");
+    questionContainer.appendChild(p1);
+    p1.textContent =
+        "Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!";
+    questionContainer.appendChild(startButton);
+    startButton.textContent = "Start Quiz";
+    startButton.setAttribute("style", "margin-top:5vh;");
+}
+
+function answer(number) {
+    if (number === currentAnswer) {
+    }
 }
