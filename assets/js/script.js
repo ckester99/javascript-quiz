@@ -66,7 +66,8 @@ feedbackDisplay.classList.add("invis");
 var h2El = document.createElement("h2");
 h2El.setAttribute("style", "font-size:36px; font-weight:normal;");
 var scoreSubmitFrm = document.createElement("form");
-scoreSubmitFrm.innerHTML = '<label for="initials">Initials:</label> <input type="text" id="initials"> <input type="submit" class="purpleBtn">';
+scoreSubmitFrm.innerHTML =
+    '<label for="initials">Initials:</label> <input type="text" id="initials" class= "lMarg1-5vw"> <input type="submit" class="purpleBtn lMarg1-5vw">';
 
 // Key listener for answering with number keys
 document.addEventListener("keydown", (event) => {

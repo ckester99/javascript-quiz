@@ -55,3 +55,31 @@ header p {
 .invis {
     opacity: 0;
 }
+
+.lMarg1-5vw {
+    margin: 0 0 0 1.5vw;
+}
+
+/*/ /////////////////////FORM///////////////////////////////////////////////*/
+
+form {
+    margin-top: 4vh;
+    display: flex;
+    align-items: center;
+}
+
+input {
+    height: 60px;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+label {
+    font-size: 35px;
+}
+
+#initials {
+    border: 2px solid #a9a9a9;
+    font-size: 35px;
+    max-width: 15vw;
+}
