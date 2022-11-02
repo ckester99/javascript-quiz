@@ -42,16 +42,30 @@ ansButtons[0].classList.add("purpleBtn");
 ansButtons[1].classList.add("purpleBtn");
 ansButtons[2].classList.add("purpleBtn");
 ansButtons[3].classList.add("purpleBtn");
+ansButtons[0].addEventListener("click", function () {
+    answer(1);
+});
+ansButtons[1].addEventListener("click", function () {
+    answer(2);
+});
+ansButtons[2].addEventListener("click", function () {
+    answer(3);
+});
+ansButtons[3].addEventListener("click", function () {
+    answer(4);
+});
 
 var feedbackDisplay = document.createElement("h2");
 feedbackDisplay.setAttribute("style", "font-size:40px; font-weight:bold; color:#D3D3D3; border-top: 2px; border-color:#D3D3D3;");
 
 // Game Vars
 var curQuestion;
+var curIndex = 0;
 var timerVal = 0;
 var gameRunning = false;
 var score = 0;
 var questions;
+var numQuestions;
 
 // Organizing DOM
 body.appendChild(header);
@@ -83,6 +97,7 @@ function showMainScreen() {
 }
 
 function startGame() {
+    gameRunning = true;
     questions = randomize(questionsJSON.questions);
     curQuestion = questions[0];
     console.log(questions);
@@ -106,23 +121,43 @@ function startGame() {
 }
 
 function answer(number) {
-    if (number === curQuestion.sol) {
+    console.log(gameRunning);
+    if (gameRunning) {
+        console.log(curQuestion);
+        if (number === curQuestion.sol) {
+        } else {
+            timerVal -= 10;
+        }
+
+        if (curIndex < questions.length - 1) {
+            curIndex++;
+            curQuestion = questions[curIndex];
+            setQuestion();
+        }
+        showTime();
     }
 }
 
 setInterval(countDown, 1000);
 function countDown() {
     timerVal--;
-    if (timerVal <= 0 && !gameRunning) {
-        gameRunning = false;
-        gameOver(score);
-        timer.textContent = "Time: 0";
-    } else {
+    if (timerVal <= 0 && gameRunning) {
+        gameOver(0);
+    }
+    showTime();
+}
+
+function showTime() {
+    if (timerVal >= 0) {
         timer.textContent = "Time: " + timerVal;
+    } else {
+        timer.textContent = "Time: 0";
     }
 }
 
-function gameOver(score) {}
+function gameOver(score) {
+    gameRunning = false;
+}
 
 function showHighScores() {
     //Header
@@ -158,6 +193,10 @@ function setQuestion() {
 
     questionTitle.textContent = curQuestion.text;
 
+    ansButtons[0].setAttribute("style", "width:auto;");
+    ansButtons[1].setAttribute("style", "width:auto;");
+    ansButtons[2].setAttribute("style", "width:auto;");
+    ansButtons[3].setAttribute("style", "width:auto;");
     ansButtons[0].textContent = "1. " + curQuestion.answers[0];
     ansButtons[1].textContent = "2. " + curQuestion.answers[1];
     ansButtons[2].textContent = "3. " + curQuestion.answers[2];
