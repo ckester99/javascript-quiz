@@ -62,6 +62,12 @@ feedbackDisplay.setAttribute(
 );
 feedbackDisplay.classList.add("invis");
 
+// Game over screen elements
+var h2El = document.createElement("h2");
+h2El.setAttribute("style", "font-size:36px; font-weight:normal;");
+var scoreSubmitFrm = document.createElement("form");
+scoreSubmitFrm.innerHTML = '<label for="initials">Initials:</label> <input type="text" id="initials"> <input type="submit" class="purpleBtn">';
+
 // Key listener for answering with number keys
 document.addEventListener("keydown", (event) => {
     switch (event.key) {
@@ -186,6 +192,15 @@ function showTime() {
 
 function gameOver(score) {
     gameRunning = false;
+    // Main
+    questionContainer.innerHTML = "";
+    questionContainer.appendChild(questionTitle);
+    questionTitle.setAttribute("style", questionTitle.getAttribute("style") + " margin-bottom: 4vh;");
+    questionTitle.textContent = "All done!";
+    questionContainer.appendChild(h2El);
+    h2El.textContent = "Your final score is " + score + ".";
+    questionContainer.appendChild(scoreSubmitFrm);
+    questionContainer.appendChild(feedbackDisplay);
 }
 
 function showHighScores() {
