@@ -51,3 +51,7 @@ header p {
 .centerText {
     text-align: center;
 }
+
+.invis {
+    opacity: 0;
+}

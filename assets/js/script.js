@@ -56,7 +56,29 @@ ansButtons[3].addEventListener("click", function () {
 });
 
 var feedbackDisplay = document.createElement("h2");
-feedbackDisplay.setAttribute("style", "font-size:40px; font-weight:bold; color:#D3D3D3; border-top: 2px; border-color:#D3D3D3;");
+feedbackDisplay.setAttribute(
+    "style",
+    "font-size:40px; font-weight:bold; color:#D3D3D3; border-top:5px solid #D3D3D3; margin-top: 5vh; width:100%; padding-top: 2vh;"
+);
+feedbackDisplay.classList.add("invis");
+
+// Key listener for answering with number keys
+document.addEventListener("keydown", (event) => {
+    switch (event.key) {
+        case "1":
+            answer(1);
+            break;
+        case "2":
+            answer(2);
+            break;
+        case "3":
+            answer(3);
+            break;
+        case "4":
+            answer(4);
+            break;
+    }
+});
 
 // Game Vars
 var curQuestion;
@@ -100,10 +122,9 @@ function startGame() {
     gameRunning = true;
     questions = randomize(questionsJSON.questions);
     curQuestion = questions[0];
-    console.log(questions);
     //Header
     timerVal = 75;
-    timer.textContent = "Time: 75";
+    showTime();
     //Main
     questionContainer.innerHTML = "";
     questionContainer.setAttribute("style", questionContainer.getAttribute("style") + " align-items:start;");
@@ -117,15 +138,21 @@ function startGame() {
     questionContainer.appendChild(ansButtons[2]);
     questionContainer.appendChild(ansButtons[3]);
 
+    questionContainer.appendChild(feedbackDisplay);
+    feedbackDisplay.textContent = "Correct!";
+
     setQuestion();
 }
 
 function answer(number) {
-    console.log(gameRunning);
     if (gameRunning) {
-        console.log(curQuestion);
         if (number === curQuestion.sol) {
+            feedbackDisplay.textContent = "Correct!";
+            feedbackDisplay.classList.remove("invis");
+            score += 10;
         } else {
+            feedbackDisplay.textContent = "Wrong!";
+            feedbackDisplay.classList.remove("invis");
             timerVal -= 10;
         }
 
@@ -133,6 +160,8 @@ function answer(number) {
             curIndex++;
             curQuestion = questions[curIndex];
             setQuestion();
+        } else {
+            gameOver(score + timerVal);
         }
         showTime();
     }
@@ -142,7 +171,7 @@ setInterval(countDown, 1000);
 function countDown() {
     timerVal--;
     if (timerVal <= 0 && gameRunning) {
-        gameOver(0);
+        gameOver(score);
     }
     showTime();
 }
@@ -206,6 +235,4 @@ function setQuestion() {
     ansButtons[1].setAttribute("style", "width:" + maxWdth + "px;");
     ansButtons[2].setAttribute("style", "width:" + maxWdth + "px;");
     ansButtons[3].setAttribute("style", "width:" + maxWdth + "px;");
-
-    console.log(maxWdth);
 }
