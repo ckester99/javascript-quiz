@@ -327,11 +327,9 @@ function handleFormSubmit(event) {
 function genHighScoreLis() {
     hsUl.innerHTML = "";
     if (localStorage.length > 0) {
-        console.log("here");
         var highScores = JSON.parse(localStorage.getItem("highScores"));
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 10 && i < highScores.length; i++) {
             var curScore = highScores[i];
-            console.log(highScores[i]);
             var curLi = document.createElement("li");
             curLi.textContent = i + 1 + ". " + curScore[1] + ": " + curScore[0];
             hsUl.appendChild(curLi);
