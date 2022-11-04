@@ -65,11 +65,29 @@ feedbackDisplay.classList.add("invis");
 // Game over screen elements
 var h2El = document.createElement("h2");
 h2El.setAttribute("style", "font-size:36px; font-weight:normal;");
-var scoreSubmitFrm = document.createElement("form");
-scoreSubmitFrm.innerHTML =
-    '<label for="initials">Initials:</label> <input type="text" id="initials" class= "lMarg1-5vw"> <input type="submit" class="purpleBtn lMarg1-5vw">';
 
-// Key listener for answering with number keys
+// Score Submit Form
+var scoreSubmitFrm = document.createElement("form");
+
+var frmLabel = document.createElement("label");
+frmLabel.setAttribute("for", "initials");
+frmLabel.textContent = "Initials:";
+
+var frmInput = document.createElement("input");
+frmInput.setAttribute("type", "text");
+frmInput.setAttribute("id", "initials");
+frmInput.classList.add("lMarg1-5vw");
+
+var frmSubmit = document.createElement("input");
+frmSubmit.setAttribute("type", "submit");
+frmSubmit.classList.add("purpleBtn");
+frmSubmit.classList.add("lMarg1-5vw");
+frmSubmit.addEventListener("click", handleFormSubmit);
+
+scoreSubmitFrm.appendChild(frmLabel);
+scoreSubmitFrm.appendChild(frmInput);
+scoreSubmitFrm.appendChild(frmSubmit);
+
 document.addEventListener("keydown", (event) => {
     switch (event.key) {
         case "1":
@@ -251,4 +269,13 @@ function setQuestion() {
     ansButtons[1].setAttribute("style", "width:" + maxWdth + "px;");
     ansButtons[2].setAttribute("style", "width:" + maxWdth + "px;");
     ansButtons[3].setAttribute("style", "width:" + maxWdth + "px;");
+}
+
+function handleFormSubmit(event) {
+    // Prevent the default behavior
+    event.preventDefault();
+
+    var initials = document.getElementById("initials");
+
+    console.log("here");
 }
