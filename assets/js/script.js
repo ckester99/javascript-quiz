@@ -106,6 +106,8 @@ document.addEventListener("keydown", (event) => {
 });
 
 // High Score Elements
+hsUl = document.createElement("ul");
+
 hsNavDiv = document.createElement("div");
 backBtn = document.createElement("button");
 backBtn.textContent = "Go Back";
@@ -185,6 +187,7 @@ function startGame() {
     questionContainer.appendChild(ansButtons[3]);
 
     questionContainer.appendChild(feedbackDisplay);
+    feedbackDisplay.classList.add("invis");
     feedbackDisplay.textContent = "Correct!";
 
     setQuestion();
@@ -253,7 +256,9 @@ function showHighScores() {
     questionContainer.innerHTML = "";
     questionContainer.appendChild(questionTitle);
     questionTitle.textContent = "High Scores";
+    questionContainer.appendChild(hsUl);
     questionContainer.appendChild(hsNavDiv);
+    genHighScoreLis();
 }
 
 function randomize(arr) {
@@ -317,4 +322,19 @@ function handleFormSubmit(event) {
     initials.value = "";
 
     showHighScores();
+}
+
+function genHighScoreLis() {
+    hsUl.innerHTML = "";
+    if (localStorage.length > 0) {
+        console.log("here");
+        var highScores = JSON.parse(localStorage.getItem("highScores"));
+        for (i = 0; i < 10; i++) {
+            var curScore = highScores[i];
+            console.log(highScores[i]);
+            var curLi = document.createElement("li");
+            curLi.textContent = i + 1 + ". " + curScore[1] + ": " + curScore[0];
+            hsUl.appendChild(curLi);
+        }
+    }
 }
