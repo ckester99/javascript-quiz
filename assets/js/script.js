@@ -105,6 +105,23 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
+// High Score Elements
+hsNavDiv = document.createElement("div");
+backBtn = document.createElement("button");
+backBtn.textContent = "Go Back";
+backBtn.classList.add("purpleBtn");
+backBtn.addEventListener("click", showMainScreen);
+
+clrHighScoresBtn = document.createElement("button");
+clrHighScoresBtn.textContent = "Clear High Scores";
+clrHighScoresBtn.classList.add("purpleBtn");
+clrHighScoresBtn.classList.add("lMarg1-5vw");
+hsNavDiv.appendChild(backBtn);
+hsNavDiv.appendChild(clrHighScoresBtn);
+clrHighScoresBtn.addEventListener("click", function () {
+    localStorage.clear();
+});
+
 // Game Vars
 var curQuestion;
 var curIndex = 0;
@@ -133,6 +150,8 @@ function showMainScreen() {
     //Main
     main.innerHTML = "";
     main.appendChild(questionContainer);
+    questionContainer.innerHTML = "";
+    questionContainer.setAttribute("style", questionContainer.getAttribute("style") + " align-items:center;");
     questionContainer.appendChild(questionTitle);
     questionTitle.textContent = "Coding Quiz Challenge";
     questionContainer.appendChild(p1);
@@ -144,6 +163,8 @@ function showMainScreen() {
 }
 
 function startGame() {
+    score = 0;
+    curIndex = 0;
     gameRunning = true;
     questions = randomize(questionsJSON.questions);
     curQuestion = questions[0];
@@ -186,7 +207,9 @@ function answer(number) {
             curQuestion = questions[curIndex];
             setQuestion();
         } else {
-            gameOver(score + timerVal);
+            console.log("here");
+            score += timerVal;
+            gameOver();
         }
         showTime();
     }
@@ -196,7 +219,7 @@ setInterval(countDown, 1000);
 function countDown() {
     timerVal--;
     if (timerVal <= 0 && gameRunning) {
-        gameOver(score);
+        gameOver();
     }
     showTime();
 }
@@ -209,7 +232,7 @@ function showTime() {
     }
 }
 
-function gameOver(score) {
+function gameOver() {
     gameRunning = false;
     // Main
     questionContainer.innerHTML = "";
@@ -226,8 +249,11 @@ function showHighScores() {
     //Header
     timer.textContent = "Time: 0";
     highScoreButton.textContent = "";
-
     //Main
+    questionContainer.innerHTML = "";
+    questionContainer.appendChild(questionTitle);
+    questionTitle.textContent = "High Scores";
+    questionContainer.appendChild(hsNavDiv);
 }
 
 function randomize(arr) {
@@ -277,5 +303,18 @@ function handleFormSubmit(event) {
 
     var initials = document.getElementById("initials");
 
-    console.log("here");
+    var highScores = [];
+    if (localStorage.length > 0) {
+        highScores = JSON.parse(localStorage.getItem("highScores"));
+    }
+    highScores.push([score, initials.value]);
+    highScores.sort(function (a, b) {
+        return b[0] - a[0];
+    });
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+
+    console.log(localStorage.getItem("highScores"));
+    initials.value = "";
+
+    showHighScores();
 }
