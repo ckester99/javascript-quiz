@@ -122,6 +122,7 @@ hsNavDiv.appendChild(backBtn);
 hsNavDiv.appendChild(clrHighScoresBtn);
 clrHighScoresBtn.addEventListener("click", function () {
     localStorage.clear();
+    genHighScoreLis();
 });
 
 // Game Vars
@@ -332,6 +333,9 @@ function genHighScoreLis() {
             var curScore = highScores[i];
             var curLi = document.createElement("li");
             curLi.textContent = i + 1 + ". " + curScore[1] + ": " + curScore[0];
+            if (!(i % 2)) {
+                curLi.classList.add("bg-light-purple");
+            }
             hsUl.appendChild(curLi);
         }
     }

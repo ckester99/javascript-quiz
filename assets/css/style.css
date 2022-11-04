@@ -83,3 +83,18 @@ label {
     font-size: 35px;
     max-width: 15vw;
 }
+
+/*/ /////////////////////High Scores///////////////////////////////////////////////*/
+ul {
+    width: 100%;
+}
+
+li {
+    font-size: 28px;
+    padding: 8px;
+    font-weight: bold;
+}
+
+.bg-light-purple {
+    background-color: #cbc3e3;
+}
